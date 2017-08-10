@@ -21,7 +21,6 @@ export default class Signup extends React.Component {
   //     error: 'Something went wrong'
   //   });
   };
-
   render() {
     return (
       <div>
