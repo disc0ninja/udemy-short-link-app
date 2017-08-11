@@ -1,26 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router';
-import { Accounts } from 'meteor/accounts-base';
+import React from 'react'
+import { Link } from 'react-router'
+import { Accounts } from 'meteor/accounts-base'
 
 export default class Signup extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       error: ''
-    };
-  };
+    }
+  }
   onSubmit(e) {
-    e.preventDefault();
-    let email = this.refs.email.value.trim();
-    let password = this.refs.password.value.trim();
+    e.preventDefault()
+    let email = this.refs.email.value.trim()
+    let password = this.refs.password.value.trim()
 
     Accounts.createUser({email, password}, (err) => {
-      console.log('Signup callback', err);
-    });
-  //   this.setState({
-  //     error: 'Something went wrong'
-  //   });
-  };
+      if (err) {
+        this.setState({error: err.reason})
+      } else {
+        this.setState({error: ''})
+      }
+    })
+  }
   render() {
     return (
       <div>
@@ -33,6 +34,6 @@ export default class Signup extends React.Component {
         </form>
         <Link to="/">Have an account already?</Link>
       </div>
-    );
-  };
-};
+    )
+  }
+}
