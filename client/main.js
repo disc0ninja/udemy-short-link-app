@@ -10,11 +10,6 @@ Tracker.autorun(() => {
   onAuthChange(isAuthenticated);
 });
 
-Tracker.autorun(() => {
-  let allLinks = Links.find().fetch();
-  console.log(allLinks);
-});
-
 Meteor.startup(() => {
   ReactDOM.render(routes, document.getElementById('app'));
 });
