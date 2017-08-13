@@ -10,16 +10,6 @@ export default class LinksListFilers extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.linksTracker = Tracker.autorun( () => {
-  //     Meteor.subscribe('linksPub');
-  //     const links = Links.find({
-  //       visible: Session.get('showVisible')
-  //     }).fetch();
-  //     this.setState({ links });
-  //   })
-  // }
-
   componentDidMount() {
     this.visibleTracker = Tracker.autorun( () => {
       this.setState({
