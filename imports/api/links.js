@@ -28,8 +28,34 @@ Meteor.methods({
     Links.insert({
       _id: shortid.generate(),
       url,
-      userId: this.userId
+      userId: this.userId,
+      visible: true
     });
+  },
+
+  'links.setVisibility'(_id, visible) {
+    // Check if user is logged in. Throw an error if not.
+    if (!this.userId) {
+      throw new Meteor.Error('not-authorized')
+    }
+    // validate _id is a string > 1 char
+    // validate visible is a bool
+    new SimpleSchema({
+      _id: {
+        type: String,
+        min: 1
+      },
+      visible: {
+        type: Boolean
+      }
+    }).validate({ _id, visible });
+    // Links.update - where _id and this.userId match the doc
+    // Set the visible property to the visible argument
+    Links.update( {
+       _id,
+       userId: this.userId
+      },
+       { $set: { visible } })
   }
 
 });

@@ -1,6 +1,8 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import Clipboard from 'clipboard';
+import Links from '../api/links';
 
 // Create a boolean state called justCopied. Default to false
 // On success switch justCopied to true
@@ -36,7 +38,11 @@ export default class LinksListItem extends React.Component {
       <div>
         <h3>{this.props.url}</h3>
         <p>{this.props.shortUrl}</p>
+        <p>{this.props.visible.toString()}</p>
         <button ref="copy" data-clipboard-text={this.props.shortUrl} >{ this.state.justCopied ? 'Copied' : 'Copy' }</button>
+        <button onClick={() => { Meteor.call('links.setVisibility', this.props._id, !this.props.visible)}}>
+          {this.props.visible ? 'Hide' : 'Unhide'}
+        </button>
       </div>
     )
   }
@@ -46,5 +52,6 @@ LinksListItem.propTypes = {
   _id: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
-  shortUrl: PropTypes.string.isRequired
+  shortUrl: PropTypes.string.isRequired,
+  visible: PropTypes.bool.isRequired
 }
