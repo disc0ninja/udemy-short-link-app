@@ -1,9 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default () => {
   return(
-    <div>
-      <p>NotFound Component Here</p>
+    <div className="boxed-view">
+      <div className="boxed-view__box">
+        <h1>Page Not Found</h1>
+        <p>Hmm, we're unable to find that page.</p>
+        <Link to="/links">Home</Link>
+      </div>
     </div>
   );
 };
