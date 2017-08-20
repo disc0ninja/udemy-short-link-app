@@ -2,6 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { Session } from 'meteor/session';
+import FlipMove from 'react-flip-move';
 
 // Custom API Imports
 import { Links } from '../api/links';
@@ -48,9 +49,9 @@ export default class LinksList extends React.Component {
   render() {
     return(
       <div>
-        <div>
+        <FlipMove duration={333} easing="ease-out" maintainContainerHeight={true}>
           { this.renderLinksListItems() }
-        </div>
+        </FlipMove>
       </div>
     )
 
