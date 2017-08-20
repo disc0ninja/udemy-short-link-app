@@ -33,7 +33,7 @@ export default class LinksList extends React.Component {
   renderLinksListItems() {
     if (this.state.links.length === 0) {
       return (
-        <div>
+        <div className="item">
           <p>No links found</p>
         </div>
       );

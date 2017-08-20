@@ -47,7 +47,7 @@ export default class LinksListItem extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className="item">
         <h3>{this.props.url}</h3>
         <p>{this.props.shortUrl}</p>
         <p>{this.props.visible.toString()}</p>
