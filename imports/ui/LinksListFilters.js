@@ -25,8 +25,8 @@ export default class LinksListFilers extends React.Component {
   render() {
     return(
       <div>
-        <label>
-          <input type="checkbox" checked={!this.state.showVisible}
+        <label className="checkbox">
+          <input className="checkbox__box" type="checkbox" checked={!this.state.showVisible}
             onChange={
               (e) => {
                 Session.set('showVisible', !e.target.checked);
