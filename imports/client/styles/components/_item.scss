@@ -4,3 +4,14 @@
   margin-bottom: $space;
   padding: $space;
 }
+
+.item__message {
+  color: $item-text-color;
+}
+
+.item__status-message {
+  color: $item-text-color;
+  font-style: italic;
+  text-align: center;
+  margin: 0;
+}
