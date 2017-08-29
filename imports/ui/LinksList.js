@@ -1,11 +1,11 @@
 import React from 'react';
-import { Meteor } from 'meteor/meteor';
-import { Tracker } from 'meteor/tracker';
-import { Session } from 'meteor/session';
+import {Meteor} from 'meteor/meteor';
+import {Tracker} from 'meteor/tracker';
+import {Session} from 'meteor/session';
 import FlipMove from 'react-flip-move';
 
 // Custom API Imports
-import { Links } from '../api/links';
+import {Links} from '../api/links';
 
 // Component Imports
 import LinksListItem from './LinksListItem';
@@ -18,12 +18,10 @@ export default class LinksList extends React.Component {
     }
   }
   componentDidMount() {
-    this.linksTracker = Tracker.autorun( () => {
+    this.linksTracker = Tracker.autorun(() => {
       Meteor.subscribe('linksPub');
-      const links = Links.find({
-        visible: Session.get('showVisible')
-      }).fetch();
-      this.setState({ links });
+      const links = Links.find({visible: Session.get('showVisible')}).fetch();
+      this.setState({links});
     })
   }
 
@@ -35,11 +33,11 @@ export default class LinksList extends React.Component {
     if (this.state.links.length === 0) {
       return (
         <div className="item">
-          <p className="item__status-message" >No links found</p>
+          <p className="item__status-message">No links found</p>
         </div>
       );
     } else {
-      return this.state.links.map( (link) => {
+      return this.state.links.map((link) => {
         const shortUrl = Meteor.absoluteUrl(link._id);
         return <LinksListItem key={link._id} shortUrl={shortUrl} {...link}/>
       })
@@ -47,10 +45,10 @@ export default class LinksList extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <div>
         <FlipMove duration={333} easing="ease-out" maintainContainerHeight={true}>
-          { this.renderLinksListItems() }
+          {this.renderLinksListItems()}
         </FlipMove>
       </div>
     )

@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 
 // Custom API Imports
-import { Links } from '../api/links';
+import {Links} from '../api/links';
 
 export default class AddLink extends React.Component {
   constructor(props) {
@@ -16,13 +16,11 @@ export default class AddLink extends React.Component {
 
   // AddLink
   onChange(e) {
-    this.setState({
-      url: e.target.value.trim()
-    });
+    this.setState({url: e.target.value.trim()});
   };
 
   onSubmit(e) {
-    const { url } = this.state
+    const {url} = this.state
 
     e.preventDefault();
 
@@ -41,24 +39,19 @@ export default class AddLink extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <div>
         <button className="button" onClick={() => this.setState({isOpen: true})}>
           + Add Link
         </button>
-        <Modal
-          isOpen={this.state.isOpen}
-          contentLabel="Add link"
-          onAfterOpen={() => this.refs.url.focus()}
-          onRequestClose={() => this.handleModalClose()}
-          className="boxed-view__box"
-          overlayClassName="boxed-view boxed-view--modal">
+        <Modal isOpen={this.state.isOpen} contentLabel="Add link" onAfterOpen={() => this.refs.url.focus()} onRequestClose={() => this.handleModalClose()} className="boxed-view__box" overlayClassName="boxed-view boxed-view--modal">
           <h1>Add Link</h1>
-          {this.state.error ? <p>{this.state.error}</p> : undefined }
+          {this.state.error
+            ? <p>{this.state.error}</p>
+            : undefined}
           <form className="boxed-view__form" onSubmit={this.onSubmit.bind(this)}>
-            <input
-               type="text" ref="url" placeholder="URL to shorten" ref="url" value={this.state.url} onChange={this.onChange.bind(this)}/>
-            <button className="button" >Add Link</button>
+            <input type="text" ref="url" placeholder="URL to shorten" ref="url" value={this.state.url} onChange={this.onChange.bind(this)}/>
+            <button className="button">Add Link</button>
             <button className="button button--secondary" type="button" onClick={() => this.handleModalClose()}>Cancel</button>
           </form>
         </Modal>

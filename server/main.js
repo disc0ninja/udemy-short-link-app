@@ -1,18 +1,18 @@
-import { Meteor } from 'meteor/meteor';
-import { WebApp } from 'meteor/webapp';
+import {Meteor} from 'meteor/meteor';
+import {WebApp} from 'meteor/webapp';
 
 // API imports
 import '../imports/api/users';
-import { Links } from '../imports/api/links';
+import {Links} from '../imports/api/links';
 
 // Configuration Imports
 import '../imports/startup/simple-schema-configuration';
 
 Meteor.startup(() => {
-  WebApp.connectHandlers.use( (req, res, next) => {
+  WebApp.connectHandlers.use((req, res, next) => {
     console.log(req.url)
     const _id = req.url.slice(1);
-    const link = Links.findOne({ _id });
+    const link = Links.findOne({_id});
 
     if (link) {
       res.statusCode = 302;

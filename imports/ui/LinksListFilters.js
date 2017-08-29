@@ -1,6 +1,6 @@
 import React from 'react';
-import { Tracker } from 'meteor/tracker';
-import { Session } from 'meteor/session';
+import {Tracker} from 'meteor/tracker';
+import {Session} from 'meteor/session';
 
 export default class LinksListFilers extends React.Component {
   constructor(props) {
@@ -11,10 +11,8 @@ export default class LinksListFilers extends React.Component {
   }
 
   componentDidMount() {
-    this.visibleTracker = Tracker.autorun( () => {
-      this.setState({
-        showVisible: Session.get('showVisible')
-      })
+    this.visibleTracker = Tracker.autorun(() => {
+      this.setState({showVisible: Session.get('showVisible')})
     })
   }
 
@@ -23,15 +21,12 @@ export default class LinksListFilers extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <div>
         <label className="checkbox">
-          <input className="checkbox__box" type="checkbox" checked={!this.state.showVisible}
-            onChange={
-              (e) => {
-                Session.set('showVisible', !e.target.checked);
-              }
-            } />
+          <input className="checkbox__box" type="checkbox" checked={!this.state.showVisible} onChange={(e) => {
+            Session.set('showVisible', !e.target.checked);
+          }}/>
           Show hidden links
         </label>
       </div>
